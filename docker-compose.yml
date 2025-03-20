@@ -1,0 +1,15 @@
+services:
+  qemu-systemc-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_UID: ${USER_UID}
+        USER_GID: ${USER_GID}
+    image: "qemu-systemc-env:${USER}"
+    container_name: "qemu-systemc-container-${USER}"
+    user: qemu_user  # 預設用這個 user 跑
+    working_dir: /home/qemu_user/workspace
+    volumes:
+      - ./workspace:/home/qemu_user/workspace
+    tty: true
