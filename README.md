@@ -19,10 +19,16 @@
     docker compose up -d --build
     ```
 
+## Attach to container
+
+```
+docker exec -it <container-name> /bin/bash
+```
+
 ## Environment Details
 
 - You will be logged in as the user `qemu_user` inside the container.
 - `workspace/` is automatically mounted as a volume to `/home/qemu_user/workspace`.
 - SystemC is pre-installed and located at: `/opt/systemc/`
   - `LD_LIBRARY_PATH` is set to include the SystemC library path.
-  - `SYSTEMC_HOME` is set for locating include files easily.
+  - environment varialbe `SYSTEMC_HOME` is set for locating include files easily.

@@ -6,6 +6,8 @@ services:
       args:
         USER_UID: ${USER_UID}
         USER_GID: ${USER_GID}
+    ports:
+      - "1234:1234"  # gdbserver port
     image: "qemu-systemc-env:${USER}"
     container_name: "qemu-systemc-container-${USER}"
     user: qemu_user  # 預設用這個 user 跑

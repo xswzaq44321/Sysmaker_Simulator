@@ -3,7 +3,7 @@
 ```=
 cd Sysmaker_QEMU
 mkdir build && cd build
-../configure --target-list="arm-softmmu,arm-linux-user" --prefix=${HOME}/workspace/qemu-bin
+../configure --target-list="arm-softmmu,arm-linux-user" --prefix=${HOME}/workspace/qemu-bin --enable-debug
 make -j$(nproc) && make install
 ```
 
@@ -17,9 +17,10 @@ int main(){
     printf("Hello, ARM\n");
     return 0;
 }
+
 ```
 
 ```
-arm-linux-gnueabi-gcc test.c -o test.o
-~/workspace/qemu-bin/bin/qemu-arm -L /usr/arm-linux-gnueabi/ test.o
+arm-none-linux-gnueabihf-gcc -static test.c -o test
+~/workspace/qemu-bin/bin/qemu-arm test
 ```
