@@ -4,7 +4,7 @@
 
 1. Clone the repository (with submodules)
     ```
-    git clone --recurse-submodules https://github.com/weber-lin-nthu/Sysmaker_Simulator.git
+    git clone --recurse-submodules https://github.com/xswzaq44321/Sysmaker_Simulator.git
     ```
 2. Copy the example `.env` file and configure your user-specific values (copy `.env.example` to `.env`):
     You need to fill in your user uid and user gid

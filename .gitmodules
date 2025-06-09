@@ -1,3 +1,6 @@
 [submodule "workspace/Sysmaker_QEMU"]
 	path = workspace/Sysmaker_QEMU
-	url = https://github.com/weber-lin-nthu/Sysmaker_QEMU.git
+	url = https://github.com/xswzaq44321/Sysmaker_QEMU.git
+[submodule "workspace/Sysmaker_SystemC"]
+	path = workspace/Sysmaker_SystemC
+	url = https://github.com/xswzaq44321/Sysmaker_SystemC.git
