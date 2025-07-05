@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "description": "This netlist is fed into QEMU, QEMU simulates MCU, so this netlist is MCU-centric",
+    "patternProperties": {
+        "^[A-Za-z0-9_-]+$": {
+            "type": "object",
+            "description": "pin name that's usually named from MCU's pinout document",
+            "minProperties": 1,
+            "additionalProperties": {
+                "type": "object",
+                "description": "Hardware name, usually come from EDA tool auto naming",
+                "properties": {
+                    "pin": {
+                        "type": "integer",
+                        "description": "pin number on that chips package",
+                        "minimum": 0
+                    },
+                    "function": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "string describing the function of that pin, or null if it's not apparent"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "additionalProperties": false
+}

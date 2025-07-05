@@ -5,10 +5,9 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    if (argc <= 1)
-    {
+    if (argc <= 1) {
         printf("usage: %s <unix-socket-path>\n", argv[0]);
         exit(1);
     }
@@ -25,22 +24,18 @@ int main(int argc, char *argv[])
     printf("Input file path to be transmitted: ");
 
     char fileName[256];
-    while (scanf(" %s", fileName) != EOF)
-    {
-        FILE *fp = fopen(fileName, "r");
-        if (fp == NULL)
-        {
+    while (scanf(" %s", fileName) != EOF) {
+        FILE* fp = fopen(fileName, "r");
+        if (fp == NULL) {
             perror("fopen");
-        }
-        else
-        {
+        } else {
             int readLen = fread(buf, sizeof(char), 100'000, fp);
             int sentBytes = send_data(obj.client_fd, buf, readLen);
-            printf("json file: %s sent, total %d bytes\n", argv[1], sentBytes);
+            printf("json file: %s sent, total %d bytes\n", fileName, sentBytes);
             fclose(fp);
         }
         printf("Input file path to be transmitted: ");
     }
-
+    printf("\nClosing connection...\n");
     server_close(&obj);
 }

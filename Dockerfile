@@ -57,5 +57,6 @@ RUN tar -xzf systemc-2.3.3.tar.gz && \
 ENV LD_LIBRARY_PATH=/opt/systemc/lib-linux64
 ENV SYSTEMC_HOME=/opt/systemc/
 
+ENV TERM=xterm-256color
 # 預設啟動 bash（但 docker-compose 已經指定 user）
 CMD ["/bin/bash"]

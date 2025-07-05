@@ -1,0 +1,82 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "description": "This netlist is fed into SystemC",
+    "patternProperties": {
+        "^[A-Za-z0-9_-]+$": {
+            "type": "object",
+            "description": "Hardware name, usually come from EDA tool auto naming",
+            "minProperties": 1,
+            "properties": {
+                "components": {
+                    "type": "array",
+                    "title": "list of component this hardware have",
+                    "items": {
+                        "$ref": "#/definitions/component"
+                    }
+                },
+                "pin_to_trace": {
+                    "type": "object",
+                    "description": "dictionary of external peripheral ic's pin number to MCU's pin name",
+                    "patternProperties": {
+                        "^\\d+$": {
+                            "type": "string",
+                            "description": "this ic's pin number to MCU's pin name"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "components",
+                "pin_to_trace"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "component": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "type of this HW",
+                    "description": "one of [GPIO, UART, SPI, I2C]"
+                },
+                "Interface Configuration": {
+                    "$ref": "#/definitions/Interface Configuration"
+                }
+            },
+            "required": [
+                "type",
+                "Interface Configuration"
+            ]
+        },
+        "Interface Configuration": {
+            "type": "object",
+            "description": "metadata for what this component have",
+            "properties": {
+                "Pin Configuration": {
+                    "type": "object",
+                    "description": "dictionary of pins to it's function",
+                    "minItems": 1,
+                    "patternProperties": {
+                        "^\\d+$": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "function of this pin, can be null",
+                            "title": "pin number"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "Pin Configuration"
+            ]
+        }
+    }
+}
