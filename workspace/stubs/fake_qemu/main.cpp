@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
     printf("Connecting to client...\n");
     server_bind_listen_socket(&obj);
     printf("Client connected\n");
+    recv_data(obj.client_fd, buf, 100'000);
     printf("Input file path to be transmitted: ");
 
     char fileName[256];
@@ -29,10 +30,14 @@ int main(int argc, char* argv[])
         if (fp == NULL) {
             perror("fopen");
         } else {
-            int readLen = fread(buf, sizeof(char), 100'000, fp);
+            uint64_t readLen = fread(buf, sizeof(char), 100'000, fp);
+            send_data(obj.client_fd, &readLen, 8);
             int sentBytes = send_data(obj.client_fd, buf, readLen);
             printf("json file: %s sent, total %d bytes\n", fileName, sentBytes);
             fclose(fp);
+            uint64_t incoming_size;
+            recv_data(obj.client_fd, &incoming_size, 8);
+            recv_data(obj.client_fd, buf, incoming_size);
         }
         printf("Input file path to be transmitted: ");
     }

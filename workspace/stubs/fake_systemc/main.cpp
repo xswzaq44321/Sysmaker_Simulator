@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 
         // sending netlist.json
         {
-            FILE* fp = fopen("netlist.json", "r");
+            FILE* fp = fopen("QEMU_netlist.json", "r");
             if (fp == NULL)
                 perror("fopen");
             fseek(fp, 0L, SEEK_END);

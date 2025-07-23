@@ -48,12 +48,12 @@ RUN wget https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/
 ENV PATH="/opt/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-linux-gnueabihf/bin:${PATH}"
 
 # 安裝 SystemC
-COPY systemc-2.3.3.tar.gz .
-RUN tar -xzf systemc-2.3.3.tar.gz && \
-    cd systemc-2.3.3 && mkdir build && cd build && \
+COPY systemc-3.0.1.tar.gz .
+RUN tar -xzf systemc-3.0.1.tar.gz && \
+    cd systemc-3.0.1 && mkdir build && cd build && \
     ../configure --prefix=/opt/systemc && \
     make -j$(nproc) && make install && \
-    rm -rf systemc-2.3.3 systemc-2.3.3.tar.gz
+    rm -rf systemc-3.0.1 systemc-3.0.1.tar.gz
 ENV LD_LIBRARY_PATH=/opt/systemc/lib-linux64
 ENV SYSTEMC_HOME=/opt/systemc/
 

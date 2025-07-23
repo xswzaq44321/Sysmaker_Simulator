@@ -1,0 +1,17 @@
+{
+    "pins": [
+        "PG13"
+    ],
+    "beginTime": "10ms",
+    "type": "PCB",
+    "Interface Configuration": {
+        "Pin Configuration": {
+            "PG13": null
+        }
+    },
+    "Data": {
+        "PinStates": {
+            "PG13": "5V"
+        }
+    }
+}

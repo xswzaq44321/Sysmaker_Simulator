@@ -42,10 +42,16 @@
                 "type": {
                     "type": "string",
                     "title": "type of this HW",
-                    "description": "one of [GPIO, UART, SPI, I2C]"
+                    "description": "one of [GPIO, UART, SPI, I2C]",
+                    "examples": [ "GPIO", "UART", "SPI", "I2C" ]
                 },
                 "Interface Configuration": {
-                    "$ref": "#/definitions/Interface Configuration"
+                    "type": "object",
+                    "oneOf": [
+                        { "$ref": "#/definitions/Template Interface Configuration" },
+                        { "$ref": "#/definitions/SPI Interface Configuration" },
+                        { "$ref": "#/definitions/UART Interface Configuration" }
+                    ]
                 }
             },
             "required": [
@@ -53,29 +59,87 @@
                 "Interface Configuration"
             ]
         },
-        "Interface Configuration": {
+        "Pin Configuration": {
             "type": "object",
-            "description": "metadata for what this component have",
-            "properties": {
-                "Pin Configuration": {
-                    "type": "object",
-                    "description": "dictionary of pins to it's function",
-                    "minItems": 1,
-                    "patternProperties": {
-                        "^\\d+$": {
-                            "type": [
-                                "string",
-                                "null"
-                            ],
-                            "description": "function of this pin, can be null",
-                            "title": "pin number"
-                        }
-                    },
-                    "additionalProperties": false
+            "description": "dictionary of pins to it's function",
+            "minItems": 1,
+            "patternProperties": {
+                "^\\d+$": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "function of this pin, can be null",
+                    "title": "pin number",
+                    "examples": [
+                        "TX", "RX",
+                        "SCLK", "CS", "MOSI", "MISO"
+                    ]
                 }
             },
+            "additionalProperties": false
+        },
+        "Template Interface Configuration": {
+            "type": "object",
+            "description": "Template metadata for what this component have",
+            "properties": {
+                "Pin Configuration": {
+                    "$ref": "#/definitions/Pin Configuration"
+                }
+            },
+            "additionalProperties": false,
             "required": [
                 "Pin Configuration"
+            ]
+        },
+        "SPI Interface Configuration": {
+            "type": "object",
+            "description": "SPI metadata for what this component have",
+            "properties": {
+                "Pin Configuration": {
+                    "$ref": "#/definitions/Pin Configuration"
+                },
+                "Clock Frequency": {
+                    "type": "integer"
+                },
+                "SPI Mode": {
+                    "type": "integer"
+                },
+                "Bit Order": {
+                    "type": "string"
+                },
+                "Data Size": {
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "Pin Configuration", "Clock Frequency", "SPI Mode", "Bit Order", "Data Size"
+            ]
+        },
+        "UART Interface Configuration": {
+            "type": "object",
+            "description": "UART metadata for what this component have",
+            "properties": {
+                "Pin Configuration": {
+                    "$ref": "#/definitions/Pin Configuration"
+                },
+                "Baud Rate": {
+                    "type": "integer"
+                },
+                "Data Bits": {
+                    "type": "integer"
+                },
+                "Parity Bit": {
+                    "type": "integer"
+                },
+                "Stop Bits": {
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "Pin Configuration", "Baud Rate", "Data Bits", "Parity Bit", "Stop Bits"
             ]
         }
     }

@@ -30,7 +30,11 @@
                         "9": "MISO",
                         "24": "MOSI",
                         "22": "CS"
-                    }
+                    },
+                    "Clock Frequency": 4000000,
+                    "SPI Mode": 3,
+                    "Bit Order": "MSB",
+                    "Data Size": 8
                 }
             }
         ],
@@ -51,7 +55,11 @@
                         "9": "MISO",
                         "24": "MOSI",
                         "22": "CS"
-                    }
+                    },
+                    "Clock Frequency": 4000000,
+                    "SPI Mode": 3,
+                    "Bit Order": "MSB",
+                    "Data Size": 8
                 }
             }
         ],

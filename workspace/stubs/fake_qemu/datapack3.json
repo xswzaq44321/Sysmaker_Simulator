@@ -1,0 +1,30 @@
+{
+    "pins": [
+        "PE2",
+        "PE5",
+        "PE6",
+        "PG0",
+        "PG1"
+    ],
+    "beginTime": "30ns",
+    "type": "SPI",
+    "Interface Configuration": {
+        "Pin Configuration": {
+            "PE2": "SCLK",
+            "PE5": "MISO",
+            "PE6": "MOSI"
+        },
+        "Clock Frequency": 4000000,
+        "SPI Mode": 3,
+        "Bit Order": "MSB",
+        "Data Size": 8
+    },
+    "Data": {
+        "PinStates": {
+            "PG0": "0V",
+            "PG1": "5V"
+        },
+        "MOSI": [ 187, 0, 0, 0 ],
+        "MISO": [ ]
+    }
+}

@@ -15,4 +15,5 @@ services:
     working_dir: /home/qemu_user/workspace
     volumes:
       - ./workspace:/home/qemu_user/workspace
+      - /home/epl/Sysmaker_SystemC:/home/qemu_user/Sysmaker_SystemC
     tty: true

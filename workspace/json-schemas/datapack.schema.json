@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "description": "This schema defines standard datapack format.",
+    "properties": {
+        "pins": {
+            "type": "array",
+            "description": "",
+            "items": {
+                "type": "string",
+                "description": ""
+            },
+            "minProperties": 1
+        },
+        "beginTime": {
+            "type": "string",
+            "pattern": "^\\d+\\s*ns$",
+            "description": "begin time in nanosecond"
+        },
+        "endTime": {
+            "type": "string",
+            "pattern": "^\\d+\\s*ns$",
+            "description": "end time in nanosecond"
+        },
+        "type": {
+            "type": "string",
+            "description": "",
+            "examples": [ "GPIO", "UART", "SPI" ]
+        },
+        "Interface Configuration": {
+            "type": "object",
+            "description": "interface configuration",
+            "properties": {
+                "Pin Configuration": {
+                    "type": "object",
+                    "description": "dictionary of pins to it's function",
+                    "minItems": 1,
+                    "patternProperties": {
+                        "^P\\w+$": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "function of this pin, can be null",
+                            "title": "pin number"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "Pin Configuration"
+            ],
+            "additionalProperties": {
+                "description": "addons"
+            }
+        },
+        "Data": {
+            "type": "object",
+            "description": "pin data",
+            "properties": {
+                "PinStates": {
+                    "type": "object",
+                    "description": "map of pin's name to pin value, in voltage",
+                    "patternProperties": {
+                        "^P\\w+$": {
+                            "type": "string",
+                            "description": "pin name to it's voltage level"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "required": [ "PinStates" ],
+            "additionalProperties": {
+                "description": "addons"
+            }
+        }
+    },
+    "required": [ "pins", "type", "Interface Configuration", "Data" ]
+}
